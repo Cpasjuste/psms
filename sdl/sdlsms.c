@@ -147,9 +147,9 @@ static int sdlsms_video_init(int frameskip, int fullscreen, int filter)
     return 0;
   }
 
-  if(fullscreen) {
+//  if(fullscreen) {
     SDL_ShowCursor(SDL_DISABLE);
-  }
+//  }
 
   SDL_WM_SetCaption(SMSSDL_TITLE, NULL);
   return 1;

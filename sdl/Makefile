@@ -12,7 +12,7 @@
 NAME	  = sms_sdl
 
 CC        = arm-none-linux-gnueabi-gcc
-CFLAGS    = `arm-none-linux-gnueabi-sdl-config --cflags` -O2 -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=softfp -mfpu=neon -DPANDORA
+CFLAGS    = `arm-none-linux-gnueabi-sdl-config --cflags` -O2 -mcpu=cortex-a8 -mtune=cortex-a8 -mfloat-abi=softfp -mfpu=neon -DPANDORA 
 DEFINES   = -DLSB_FIRST
 INCLUDES  = -I. -I.. -I../cpu -I../sound -I$(PNDSDK)/include -I$(PNDSDK)/usr/include
 LIBS	  = `arm-none-linux-gnueabi-sdl-config --libs` -L$(PNDSDK)/usr/lib
@@ -30,7 +30,7 @@ OBJECTS  += unzip.o
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@
+	$(CC) $(LDFLAGS) $(OBJECTS) $(LIBS) -o $@ -lpng -lts -ldl -lz -lm -static
 
 .c.o:
 	$(CC) -c $(CFLAGS) $(INCLUDES) $(DEFINES) $< -o $@
