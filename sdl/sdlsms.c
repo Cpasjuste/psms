@@ -410,7 +410,7 @@ static int smssdl_joystick_init()
     sdl_joystick.number = 0;
     sdl_joystick.map_b1 = 1;
     sdl_joystick.map_b2 = 2;
-    sdl_joystick.map_start = 4;
+    sdl_joystick.map_start = 8;
     sdl_joystick.joy = SDL_JoystickOpen(sdl_joystick.number);
     if(sdl_joystick.joy != NULL) {
       printf("Joystick (%s) has %d axes and %d buttons.\n", SDL_JoystickName(sdl_joystick.number), SDL_JoystickNumAxes(sdl_joystick.joy), SDL_JoystickNumButtons(sdl_joystick.joy));
@@ -652,6 +652,11 @@ void sdlsms_emulate()
       case SDL_JOYAXISMOTION:
       case SDL_JOYBUTTONDOWN:
       case SDL_JOYBUTTONUP:
+	if( event.jbutton.button == 4 )
+	{
+		sdlsms_shutdown();
+		exit(0);
+	}
         smssdl_joystick_update(event);
         break;
       case SDL_QUIT:
